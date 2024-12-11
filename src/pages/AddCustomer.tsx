@@ -1,9 +1,11 @@
+import {Link} from "react-router";
+
 export function AddCustomer() {
     return (
         <>
             AddCustomer
             <br/>
-            <a href="/">Go Back</a>
+            <Link to='/'>Go Back</Link>
         </>
     );
 }
