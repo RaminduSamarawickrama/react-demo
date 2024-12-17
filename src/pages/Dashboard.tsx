@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {Customer} from "../models/Customer.ts";
-import {CustomerContext} from "../components/CustomerProvider.tsx";
+import {CustomerContext} from "../store/CustomerProvider.tsx";
 
 export function Dashboard() {
 

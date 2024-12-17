@@ -1,7 +1,8 @@
 import {useNavigate} from "react-router";
 import {useContext, useState} from "react";
-import {CustomerContext} from "../components/CustomerProvider.tsx";
+import {CustomerContext} from "../store/CustomerProvider.tsx";
 import {Customer} from "../models/Customer.ts";
+import {Modal} from "../components/Modal";
 
 export function AddCustomer() {
 
@@ -23,12 +24,7 @@ export function AddCustomer() {
             <header><h2>Add Customer</h2></header>
             <br/>
 
-            <input type="text" placeholder='name' onChange={(e) => setName(e.target.value)} />
-            <input type="text" placeholder='email' onChange={(e) => setEmail(e.target.value)} />
-            <input type="text" placeholder='phone' onChange={(e) => setPhone(e.target.value)} />
-
-            <br/>
-            <button onClick={handleSubmit}>Add Customer</button>
+            <Modal handleSubmit={handleSubmit} setName={setName} setEmail={setEmail} setPhone={setPhone} >Add Customer</Modal>
         </>
     );
 }
