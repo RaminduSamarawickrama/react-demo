@@ -2,23 +2,20 @@ import {useNavigate} from "react-router";
 import {useContext, useState} from "react";
 import {CustomerContext} from "../store/CustomerProvider";
 import {Modal} from "../components/Modal";
+import {Customer} from "../models/Customer";
 
 export function UpdateCustomer() {
 
     const navigate = useNavigate();
-    const [customers, setCustomers] = useContext(CustomerContext);
+    const [customers, dispatch] = useContext(CustomerContext);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
 
     function handleSubmit() {
-        const updatedCustomers = customers.map((customer) =>
-            customer.email === email ?
-                {...customer, name : name, email : email, phone : phone }
-                : customer
-        );
-        setCustomers(updatedCustomers);
+        const updatedCustomer = new Customer(name, email, phone);
+        dispatch({type:'UPDATE_CUSTOMER', payload:updatedCustomer});
         navigate('/');
     }
 

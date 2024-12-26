@@ -1,10 +1,10 @@
 import {useContext} from "react";
-import {Customer} from "../models/Customer.ts";
-import {CustomerContext} from "../store/CustomerProvider.tsx";
+import {Customer} from "../models/Customer";
+import {CustomerContext} from "../store/CustomerProvider";
 
 export function Dashboard() {
 
-    const [customers, setCustomers] = useContext(CustomerContext);
+    const [customers, dispatch] = useContext(CustomerContext);
     return (
         <>
             Dashboard

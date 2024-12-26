@@ -7,14 +7,15 @@ import {Modal} from "../components/Modal";
 export function DeleteCustomer() {
 
     const navigate = useNavigate();
-    const [setCustomers] = useContext(CustomerContext);
+    const [customers, dispatch] = useContext(CustomerContext);
 
-    const [setName] = useState("");
-    const [setEmail] = useState("");
-    const [setPhone] = useState("");
+    const [name,setName] = useState("");
+    const [email,setEmail] = useState("");
+    const [phone,setPhone] = useState("");
 
     function handleSubmit() {
-        setCustomers((customers: Customer[]) => customers.slice(0,-1));
+        const deleteCustomer = new Customer(name,email,phone);
+        dispatch({type:'DELETE_CUSTOMER',payload:deleteCustomer});
         navigate('/');
     }
 
