@@ -1,13 +1,16 @@
 import {useNavigate} from "react-router";
-import {useContext, useState} from "react";
-import {CustomerContext} from "../store/CustomerProvider.tsx";
-import {Customer} from "../models/Customer.ts";
+import {useState} from "react";
+import {Customer} from "../models/Customer";
 import {Modal} from "../components/Modal";
+import { saveCustomer} from "../reducers/CustomerReducer";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../store/store";
 
 export function AddCustomer() {
 
+    const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const [customers, dispatch] = useContext(CustomerContext);
+
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -15,7 +18,7 @@ export function AddCustomer() {
 
     function handleSubmit() {
         const newCustomer = new Customer(name, email, phone);
-        dispatch({type:'ADD_CUSTOMER', payload:newCustomer});
+        dispatch(saveCustomer(newCustomer));
         navigate('/');
     }
 
