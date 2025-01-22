@@ -1,7 +1,6 @@
 import {useNavigate} from "react-router";
-import {useContext, useState} from "react";
-import {AppDispatch, CustomerContext} from "../store/store";
-import {Customer} from "../models/Customer";
+import { useState} from "react";
+import {AppDispatch} from "../store/store";
 import {Modal} from "../components/Modal";
 import {useDispatch} from "react-redux";
 import {deleteCustomer} from "../reducers/CustomerReducer";
@@ -11,12 +10,13 @@ export function DeleteCustomer() {
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
 
-    const [name,setName] = useState("");
+    // const [name,setName] = useState("");
     const [email,setEmail] = useState("");
-    const [phone,setPhone] = useState("");
+    // const [phone,setPhone] = useState("");
+
 
     function handleSubmit() {
-        dispatch(deleteCustomer(email))
+        dispatch(deleteCustomer(email));
         navigate('/');
     }
 
@@ -24,7 +24,7 @@ export function DeleteCustomer() {
         <>
             <header><h2>Delete Customer</h2></header>
             <br/>
-            <Modal handleSubmit={handleSubmit} setName={setName} setEmail={setEmail} setPhone={setPhone}>Delete Customer</Modal>
+            <Modal handleSubmit={handleSubmit}  isDelete={true} setEmail={setEmail}>Delete Customer</Modal>
         </>
     );
 }
